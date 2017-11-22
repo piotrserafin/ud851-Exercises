@@ -15,10 +15,10 @@
  */
 package com.example.android.asynctaskloader;
 
-import android.app.LoaderManager;
-import android.content.AsyncTaskLoader;
-import android.content.Loader;
-import android.os.AsyncTask;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -79,9 +79,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
             // COMPLETED (25) Remove the code that displays the JSON
         }
 
+        LoaderCallbacks<String> callback = MainActivity.this;
+
         // COMPLETED (24) Initialize the loader with GITHUB_SEARCH_LOADER as the ID, null for the
         // bundle, and this for the context
-        getLoaderManager().initLoader(GITHUB_SEARCH_LOADER, null, this);
+        getSupportLoaderManager().initLoader(GITHUB_SEARCH_LOADER, null, callback);
     }
 
     /**
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager
         // COMPLETED (21) Call getSupportLoaderManager and store it in a LoaderManager variable
         // COMPLETED (22) Get our Loader by calling getLoader and passing the ID we specified
         // COMPLETED (23) If the Loader was null, initialize it. Else, restart it.
-        LoaderManager loaderManager = getLoaderManager();
+        LoaderManager loaderManager = getSupportLoaderManager();
         Loader<String> githubLoader = loaderManager.getLoader(GITHUB_SEARCH_LOADER);
         if(githubLoader == null) {
             loaderManager.initLoader(GITHUB_SEARCH_LOADER, queryBundle,this);
