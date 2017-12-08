@@ -22,9 +22,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.text.method.MultiTapKeyListener;
 
 import static com.example.android.todolist.data.TaskContract.TaskEntry.TABLE_NAME;
 
@@ -156,14 +158,35 @@ public class TaskContentProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
 
-        // TODO (1) Get access to the database and write URI matching code to recognize a single item
+        // COMPLETED (1) Get access to the database and write URI matching code to recognize a
+        // single item
+        final SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
 
-        // TODO (2) Write the code to delete a single row of data
+        int match = sUriMatcher.match(uri);
+
+        int numOfItemsDeleted = 0;
+
+        // COMPLETED (2) Write the code to delete a single row of data
         // [Hint] Use selections to delete an item by its row ID
+        switch (match) {
+            case TASK_WITH_ID:
+                String id = uri.getPathSegments().get(1);
 
-        // TODO (3) Notify the resolver of a change and return the number of items deleted
+                numOfItemsDeleted = db.delete(TaskContract.TaskEntry.TABLE_NAME,
+                        "_id=?",
+                        new String[]{id});
 
-        throw new UnsupportedOperationException("Not yet implemented");
+                break;
+            default:
+                throw new UnsupportedOperationException("Unknown uri " + uri);
+        }
+
+        // COMPLETED (3) Notify the resolver of a change and return the number of items deleted
+        if (numOfItemsDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        
+        return numOfItemsDeleted;
     }
 
 
