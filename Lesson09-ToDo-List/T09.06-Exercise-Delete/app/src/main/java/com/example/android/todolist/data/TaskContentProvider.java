@@ -185,7 +185,7 @@ public class TaskContentProvider extends ContentProvider {
         if (numOfItemsDeleted != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
         }
-        
+
         return numOfItemsDeleted;
     }
 
