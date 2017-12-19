@@ -107,6 +107,7 @@ public class NotificationUtils {
         //      COMPLETED (7) Set the action of the intent to designate you want to dismiss the notification
         startWaterReminderIntentService.setAction(ReminderTasks.ACTION_DISMISS_NOTIFICATION);
         //      COMPLETED (8) Create a PendingIntent from the intent to launch WaterReminderIntentService
+
         PendingIntent ignoreNotificationPendingIntent = PendingIntent.getService(
                 context,
                 ACTION_IGNORE_PENDING_INTENT_ID,
@@ -129,6 +130,7 @@ public class NotificationUtils {
     //      COMPLETED (13) Set the action of the intent to designate you want to increment the water count
         startWaterReminderIntentService.setAction(ReminderTasks.ACTION_INCREMENT_WATER_COUNT);
     //      COMPLETED (14) Create a PendingIntent from the intent to launch WaterReminderIntentService
+
         PendingIntent drinkNotificationPendingIntent = PendingIntent.getService(
                 context,
                 ACTION_DRINK_PENDING_INTENT_ID,
