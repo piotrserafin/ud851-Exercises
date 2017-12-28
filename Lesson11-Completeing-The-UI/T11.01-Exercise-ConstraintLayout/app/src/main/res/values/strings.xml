@@ -1,9 +1,10 @@
+
 <resources>
     <string name="app_name">BoardingPass</string>
     <string name="passenger_label">PASSENGER</string>
-    <string name="passenger_name">MR. JAMES BOND</string>
-    <string name="origin_code">SFO</string>
-    <string name="destination_code">LAX</string>
+    <string name="passenger_name">MR. PIOTR SERAFIN</string>
+    <string name="origin_code">KRK</string>
+    <string name="destination_code">WAW</string>
     <string name="flight_code">UDA 2465</string>
     <string name="boarding_time_label">BOARDING TIME</string>
     <string name="boarding_time">02:10 PM</string>
